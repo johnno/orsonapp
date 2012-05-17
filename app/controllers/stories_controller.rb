@@ -1,6 +1,13 @@
 class StoriesController < ApplicationController
 
   PRINT_SERVER = 'http://printer.gofreerange.com/print/2y5m4g5u6s3t8v1r'
+  STORY_STATUSES = {
+    "NONE" => "DEFINED",
+    "DEFINED" => "IN_PROGRESS",
+    "IN_PROGRESS" => "COMPLETED",
+    "IN_PROGRESS_BLOCKED" => "IN_PROGRESS",
+    "COMPLETED_BLOCKED" => "COMPLETED"
+  }
   
   before_filter :connect_to_rally
   before_filter :load_all_stories, :only => [:index,:print_all]
@@ -19,9 +26,7 @@ class StoriesController < ApplicationController
   
   def show
     story_id = params[:id]
-    @story = @rally.find(:hierarchical_requirement) do 
-      equal :object_i_d, story_id
-    end.first
+    @story = get_story(story_id)
   end
   
   def qr_code
@@ -31,7 +36,26 @@ class StoriesController < ApplicationController
     end
   end
   
+  def scanned
+    story_id = params[:id]
+    @story = get_story(story_id)
+    
+    next_status = STORY_STATUSES[@story.task_status]
+    debugger
+    if not next_status.nil?
+      @story.update(:task_status => next_status)
+    end
+    
+    render :action => :show
+  end
+  
   protected
+
+  def get_story(story_id)
+    @rally.find(:hierarchical_requirement) do 
+      equal :object_i_d, story_id
+    end.first
+  end
   
   def qr_code_svg(data)
     size   = RQRCode.minimum_qr_size_from_string(data)
@@ -42,7 +66,7 @@ class StoriesController < ApplicationController
   end
   
   def connect_to_rally
-    @rally = RallyRestAPI.new(username: RALLY_USER, password: RALLY_PASS)
+    @rally = RallyRestAPI.new(username: RALLY_USER, password: RALLY_PASS,version: '1.33')
   end
   
   def load_all_stories

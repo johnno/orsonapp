@@ -35,6 +35,6 @@
           = @story.formatted_i_d
         %h2
           = @story.name
-        = @story.description.html_safe
+        = @story.description.to_s.html_safe
         %br
         %img{:src => qr_code_story_path(params[:id],:format => 'svg'), :width => '200px', :height => '200px' }
