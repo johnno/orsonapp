@@ -10,7 +10,7 @@ class StoriesController < ApplicationController
   
   def print_all
     @stories.each do |story|
-      url_to_print = story_url(story.formatted_i_d)
+      url_to_print = story_url(story.object_i_d)
       uri = URI.parse(PRINT_SERVER)
       response = Net::HTTP.post_form(uri, {"url" => url_to_print })
     end
