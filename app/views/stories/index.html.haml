@@ -1,0 +1,17 @@
+%h1
+  Interation
+  = @iteration.name
+= link_to 'Print Them All', print_all_stories_path
+%br
+
+  %dl
+  - @stories.each do |s|
+    %dt
+      ID
+    %dd
+      = s.formatted_i_d
+    %dt
+      Name
+    %dd
+      = s.name
+    %hr

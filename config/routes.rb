@@ -4,6 +4,17 @@ Orson::Application.routes.draw do
   match 'qr_code(.:format)' => 'root#qr_code'
   match 'barcode(.:format)' => 'root#barcode'
   
+  
+  resources :stories do
+    collection do
+      get 'print_all'
+    end
+    member do
+      get 'qr_code'
+      get 'scanned'
+    end
+  end
+  
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
