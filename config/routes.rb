@@ -1,6 +1,7 @@
 Orson::Application.routes.draw do
   
   root :to => 'root#index'
+  match 'qr_code' => 'root#qr_code'
   
   # The priority is based upon order of creation:
   # first created -> highest priority.
