@@ -5,7 +5,10 @@ class RootController < ApplicationController
   end
   
   def qr_code
-    render text: qr_code_image, content_type: 'image/svg+xml'
+    respond_to do |format|
+      format.svg { render text: qr_code_image, content_type: 'image/svg+xml' }
+      format.png { render text: qr_code_png, content_type: 'image/png' }
+    end
   end
   
   protected
@@ -21,7 +24,10 @@ class RootController < ApplicationController
     svg    = RQRCode::Renderers::SVG::render(qrcode)
     return svg.to_s
     
-    image  = MiniMagick::Image.read(svg) { |i| i.format "svg" }
+  end
+  
+  def qr_code_png
+    image  = MiniMagick::Image.read(qr_code_image) { |i| i.format "svg" }
     image.format "png"
     image.to_blob
   end
