@@ -30,8 +30,20 @@
     .paper
       / 4.
       .content
-        %h1 A Rally Ticket
+        %h1
+          Interation
+          = @iteration.name
         %p Do shit loads of coding!
-        -# %img{:src => 'qr_code.svg?', :width => '380px', :height => '380px' }
+        %img{:src => 'qr_code.svg?', :width => '380px', :height => '380px' }
         %br
-        %img{:src => 'barcode.svg?', :width => '380px', }
+          %dl
+          - @stories.each do |s|
+            %dt
+              ID
+            %dd
+              = s.formatted_i_d
+            %dt
+              Name
+            %dd
+              = s.name
+            %hr
