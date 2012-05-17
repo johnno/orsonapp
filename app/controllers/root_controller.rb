@@ -1,13 +1,29 @@
 class RootController < ApplicationController
+
+  require 'barby'
+  require 'barby/barcode/ean_13'
+  require 'barby/barcode/code_39'
+  # require 'barby/outputter/png_outputter'
+  require 'barby/outputter/svg_outputter'
+  
   
   helper_method :qr_code_image64
   def index
+    # rally = RallyRestAPI.new(username: RALLY_USER, password: RALLY_PASS)
   end
   
   def qr_code
     respond_to do |format|
       format.svg { render text: qr_code_image, content_type: 'image/svg+xml' }
       format.png { render text: qr_code_png, content_type: 'image/png' }
+    end
+  end
+  
+  def barcode
+    code = Barby::Code39.new('1234567',true)
+    respond_to do |format|
+      format.svg { render text: code.to_svg(:height => 50, :margin => 5), content_type: 'image/svg+xml' }
+      format.png { render text: code.to_png(:height => 50, :margin => 5) , content_type: 'image/png' }
     end
   end
   

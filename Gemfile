@@ -8,6 +8,8 @@ gem 'pg'
 gem 'httparty'
 
 gem 'mini_magick'
+
+gem 'barby'
 gem 'rqrcode-rails3', :git => 'https://github.com/samvincent/rqrcode-rails3.git'
 
 # gem "qrencoder", '1.4.1'
@@ -15,7 +17,7 @@ gem 'rqrcode-rails3', :git => 'https://github.com/samvincent/rqrcode-rails3.git'
 gem 'haml'
 
 gem 'actionmailer'
-
+gem 'rally_rest_api'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -48,4 +50,4 @@ gem 'jquery-rails'
 # gem 'capistrano'
 
 # To use debugger
-# gem 'ruby-debug19', :require => 'ruby-debug'
+gem 'ruby-debug19', :require => 'ruby-debug'
