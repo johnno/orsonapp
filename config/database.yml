@@ -27,8 +27,8 @@
 development:
     adapter: postgresql
     database: orson_development
-    username: postgres
-    password: password
+    username: <%= ENV['PG_USERNAME'] || "postgres" %>
+    password: <%= ENV['PG_PASSWORD'] || "password" %>
     host: localhost
     pool: 5
 
