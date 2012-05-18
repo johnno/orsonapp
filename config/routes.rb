@@ -1,5 +1,7 @@
 Orson::Application.routes.draw do
   
+  devise_for :users
+
   root :to => 'root#index'
   match 'qr_code(.:format)' => 'root#qr_code'
   match 'barcode(.:format)' => 'root#barcode'

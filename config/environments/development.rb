@@ -34,4 +34,7 @@ Orson::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
+
+  # Action mailer default.
+  config.action_mailer.default_url_options = { :host => 'localhost:5000' }
 end

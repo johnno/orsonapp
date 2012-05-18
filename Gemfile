@@ -6,6 +6,7 @@ gem 'rails', '3.2.1'
 gem 'thin'
 gem 'pg'
 gem 'httparty'
+gem 'devise'
 
 gem 'mini_magick'
 
@@ -35,6 +36,7 @@ group :development do
   gem 'heroku'
   # To use debugger
   gem 'ruby-debug19', :require => 'ruby-debug'
+  gem 'foreman'
 end
 
 gem 'jquery-rails'
