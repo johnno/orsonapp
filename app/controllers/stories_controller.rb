@@ -65,22 +65,9 @@ class StoriesController < ApplicationController
     return svg.to_s
   end
   
-  def connect_to_rally
-    @rally = RallyRestAPI.new(username: RALLY_USER, password: RALLY_PASS,version: '1.33')
-  end
   
   def load_all_stories
-    project = @rally.find(:project) { equal :name, 'Fork Handles' }.results.first
-    @iteration = @rally.find(:iteration) { 
-      equal :project, project
-      less_than_equal :start_date, Date.today.to_formatted_s
-      greater_than_equal :end_date, Date.today.to_formatted_s 
-    }.results.last
-
-    # to_q is usually called internally by code in the block if you do equal(:project, project) etc
-    # but it is bugger in that context so we call it outside the block here and all is fun
-    pro_q = project.to_q
-    itr_q = @iteration.to_q
+    pro_q, itr_q = get_last_iteration
     
     @stories = @rally.find(:hierarchical_requirement) do 
       equal(:project, pro_q)

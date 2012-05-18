@@ -1,0 +1,13 @@
+%h1
+  Available tasks for
+  = @iteration.name
+
+- @stories.each do |story|
+  %div
+    %h2
+      = story.name
+    - if story.tasks
+      %ul
+        - story.tasks.each do |task|
+          %li
+            = task.name

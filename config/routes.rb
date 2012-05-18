@@ -16,6 +16,8 @@ Orson::Application.routes.draw do
       get 'scanned'
     end
   end
+
+  resources :tasks
   
   # The priority is based upon order of creation:
   # first created -> highest priority.
