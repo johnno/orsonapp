@@ -9,5 +9,6 @@
     - if story.tasks
       %ul
         - story.tasks.each do |task|
-          %li
-            = task.name
+          - if task.state == 'Defined'
+            %li
+              = task.name
