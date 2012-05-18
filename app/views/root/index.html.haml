@@ -1,8 +1,10 @@
 %h1
   Dashboard
 
-  = link_to 'Rally Stories', stories_path
-  = link_to 'Print Them All', print_all_stories_path
-
-  %div
-    = link_to 'Your tasks', tasks_path
+%ul
+  %li
+    = link_to 'Rally Stories', stories_path
+  %li
+    = link_to 'Print Them All', print_all_stories_path
+  %li
+    = link_to 'Rally tasks', tasks_path

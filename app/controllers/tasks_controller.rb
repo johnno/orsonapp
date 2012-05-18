@@ -58,6 +58,8 @@ class TasksController < ApplicationController
 
     puts res
 
+    task.update(state: "In-Progress")
+
     redirect_to tasks_path
   end
 
