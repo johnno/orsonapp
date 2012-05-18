@@ -15,9 +15,10 @@ ActiveRecord::Schema.define(:version => 20120518132911) do
 
   create_table "tasks", :force => true do |t|
     t.integer  "user_id"
-    t.string   "state",      :default => "Defined"
-    t.datetime "created_at",                        :null => false
-    t.datetime "updated_at",                        :null => false
+    t.string   "state",         :default => "Defined"
+    t.integer  "rally_task_id"
+    t.datetime "created_at",                           :null => false
+    t.datetime "updated_at",                           :null => false
   end
 
   create_table "users", :force => true do |t|

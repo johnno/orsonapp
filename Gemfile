@@ -41,6 +41,8 @@ end
 
 gem 'jquery-rails'
 
+gem 'a2_printer', :git => "https://github.com/oesmith/a2_printer.git", :branch => "rmagick-images"
+
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 

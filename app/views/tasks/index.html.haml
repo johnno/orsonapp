@@ -12,3 +12,4 @@
           - if task.state == 'Defined'
             %li
               = task.name
+              = link_to "Work on it!", assign_tasks_path(:id => task.object_i_d)

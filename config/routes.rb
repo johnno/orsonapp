@@ -17,7 +17,12 @@ Orson::Application.routes.draw do
     end
   end
 
-  resources :tasks
+  resources :tasks do
+    collection do
+      get 'assign'
+      get 'mark_completed'
+    end
+  end
   
   # The priority is based upon order of creation:
   # first created -> highest priority.
